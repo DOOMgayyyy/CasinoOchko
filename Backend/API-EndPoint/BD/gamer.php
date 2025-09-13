@@ -9,7 +9,8 @@ if (!file_exists($db_file)) {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         email TEXT UNIQUE NOT NULL,
         username TEXT UNIQUE NOT NULL,
-        password_hash TEXT NOT NULL
+        password_hash TEXT NOT NULL,
+        wallet REAL DEFAULT 0
     )";
     
     $pdo->exec($sql);

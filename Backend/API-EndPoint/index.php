@@ -10,26 +10,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 header("Content-Type: application/json; charset=UTF-8");
 
-// Вспомогательная функция для отправки стандартизированных ответов.
+
 function sendJsonResponse($status, $message, $data = []) {
     http_response_code($status);
     echo json_encode(array_merge(['message' => $message], $data));
     exit();
 }
 
-// Путь к файлу базы данных SQLite.
-$db_file = __DIR__ . '/gamers.db';
+$db_file = __DIR__ . '/BD/gamers.db';
 
-try {
-    // Подключение к базе данных SQLite.
-    $pdo = new PDO("sqlite:$db_file");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    // Если подключение не удалось, например, файл не существует или поврежден.
-    sendJsonResponse(500, 'Ошибка подключения к базе данных', ['details' => $e->getMessage()]);
+
+if (!file_exists($db_file)) {
+    sendJsonResponse(500, 'Ошибка: Файл базы данных не найден по указанному пути.');
 }
 
-// Проверка метода запроса и получение данных.
+
+$pdo = new PDO("sqlite:$db_file");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendJsonResponse(405, 'Метод не разрешен');
 }
@@ -39,7 +38,7 @@ $email = $data['email'] ?? null;
 $password = $data['password'] ?? null;
 $nickname = $data['nickname'] ?? null;
 
-// Серверная валидация.
+
 if (empty($email) || empty($password) || empty($nickname)) {
     sendJsonResponse(400, 'Все поля обязательны для заполнения');
 }
@@ -64,14 +63,9 @@ if ($stmt->fetchColumn() > 0) {
 
 // Хеширование пароля и запись нового пользователя.
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-try {
-    $stmt = $pdo->prepare("INSERT INTO users (email, nickname, password_hash) VALUES (?, ?, ?)");
-    $stmt->execute([$email, $nickname, $passwordHash]);
-} catch (PDOException $e) {
-    sendJsonResponse(500, 'Ошибка при создании пользователя', ['details' => $e->getMessage()]);
-}
+$stmt = $pdo->prepare("INSERT INTO users (email, nickname, password_hash) VALUES (?, ?, ?)");
+$stmt->execute([$email, $nickname, $passwordHash]);
 
-// Успешный ответ.
+
 sendJsonResponse(201, 'Регистрация прошла успешно. Пожалуйста, подтвердите ваш email');
 
-?>
