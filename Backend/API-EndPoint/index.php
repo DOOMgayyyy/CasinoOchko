@@ -50,12 +50,12 @@ if (strlen($password) < 8) {
 }
 
 // Проверка уникальности email и никнейма в базе данных.
-$stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM gamers WHERE email = ?");
 $stmt->execute([$email]);
 if ($stmt->fetchColumn() > 0) {
     sendJsonResponse(409, 'Этот email уже зарегистрирован');
 }
-$stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE nickname = ?");
+$stmt = $pdo->prepare("SELECT COUNT(*) FROM gamers WHERE username = ?");
 $stmt->execute([$nickname]);
 if ($stmt->fetchColumn() > 0) {
     sendJsonResponse(409, 'Этот никнейм уже занят');
@@ -63,9 +63,10 @@ if ($stmt->fetchColumn() > 0) {
 
 // Хеширование пароля и запись нового пользователя.
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-$stmt = $pdo->prepare("INSERT INTO users (email, nickname, password_hash) VALUES (?, ?, ?)");
+$stmt = $pdo->prepare("INSERT INTO gamers (email, username, password_hash) VALUES (?, ?, ?)");
 $stmt->execute([$email, $nickname, $passwordHash]);
 
 
 sendJsonResponse(201, 'Регистрация прошла успешно. Пожалуйста, подтвердите ваш email');
+
 
