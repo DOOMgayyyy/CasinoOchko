@@ -1,7 +1,12 @@
-.main-register-page{
-    min-height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 160px 20px;
+body { margin: 0; }
+
+.main-register-page {
+  position: fixed;
+  inset: 0;                /* top:0 right:0 bottom:0 left:0 */
+  display: grid;
+  place-items: center;     /* центр по вертикали и горизонтали */
+  overflow: hidden;        /* на всякий случай блокируем внутренний скролл */
 }
+
+/* чтобы случайные margin у внутренностей не создали прокрутку */
+.sign-wrap { margin: 0; }
