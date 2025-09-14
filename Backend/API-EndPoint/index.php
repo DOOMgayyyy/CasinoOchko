@@ -17,7 +17,7 @@ function sendJsonResponse($status, $message, $data = []) {
     exit();
 }
 
-$db_file = __DIR__ . '/BD/gamers.db';
+$db_file = __DIR__ . '/BD/users.db';
 
 
 if (!file_exists($db_file)) {

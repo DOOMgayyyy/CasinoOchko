@@ -1,6 +1,6 @@
 <?php
 
-$db_file = 'gamers.db';
+$db_file = 'users.db';
 
 if (!file_exists($db_file)) {
     $pdo = new PDO("sqlite:$db_file");
