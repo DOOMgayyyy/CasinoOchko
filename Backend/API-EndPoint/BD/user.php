@@ -5,7 +5,7 @@ $db_file = 'users.db';
 if (!file_exists($db_file)) {
     $pdo = new PDO("sqlite:$db_file");
     
-    $sql = "CREATE TABLE gamers (
+    $sql = "CREATE TABLE users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         email TEXT UNIQUE NOT NULL,
         username TEXT UNIQUE NOT NULL,
@@ -15,7 +15,7 @@ if (!file_exists($db_file)) {
     
     $pdo->exec($sql);
     
-    echo "Файл базы данных и таблица 'gamers' успешно созданы.";
+    echo "Файл базы данных и таблица 'users' успешно созданы.";
 } else {
-    echo "Файл 'gamers.db' уже существует. Создание пропущено.";
+    echo "Файл 'users.db' уже существует. Создание пропущено.";
 }
