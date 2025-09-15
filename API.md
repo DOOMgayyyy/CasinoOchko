@@ -5,7 +5,7 @@ API Документация
 Формат данных: application/json
 Методы: POST (основной), OPTIONS (для CORS preflight)
 
-РЕГЕСТРАЦИЯ ПОЛЬЗОВАТЕЛЕЙ
+РЕГИСТРАЦИЯ ПОЛЬЗОВАТЕЛЕЙ
 
 URL: POST /index.php
 
