@@ -189,16 +189,18 @@ Message: {
 ### 4.6. updateUserName
 Обновление имени пользователя
 Тип запроса: POST
+
+**Параметры JSON body:**
 ```
-   **Параметры JSON body:**
    {
        "method": "updateUserName",
        "token": "string", - токен авторизации 
        "newName": "string" - новое имя пользователя
    }
 ```
+
+**Успешный ответ**
 ```
-   **Успешный ответ**
    {
        "result": "ok",
        "data": {
