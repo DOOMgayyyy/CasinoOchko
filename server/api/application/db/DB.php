@@ -5,25 +5,28 @@ class DB
     // разкомент тут MYsql и смена названия базы данных
     function __construct()
     {
-        $host = '127.0.0.1';
-        $port = '3306';
-        $user = 'root';
-        $pass = ''; 
-        $db = 'CasinoOchko';
-        $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
+        $host = '127.0.0.1';// ip для подключения к бд
+        $port = '3306';// порт 
+        $user = 'root';// логин для входа в бд
+        $pass = ''; // пароль для бд
+        $db = 'CasinoOchko';// название базы данных 
+        $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";// формирование команды для подключения к базе данных
+        // cоздаем объект PDO для работы с БД
         $this->pdo = new PDO($connect, $user, $pass);
+        //Объект PDO в контексте веб-разработки — это расширение PHP, которое предоставляет единый, универсальный интерфейс для работы с различными базами данных, абстрагируя различия между ними и позволяя разработчикам писать более переносимый и безопасный код для взаимодействия с БД
     }
-
+    // деструктор, отвечает за закрытие соединеняи с бд
     public function __destruct()
     {
+        // закрываем через pdo
         $this->pdo = null;
     }
 
-    // выполнить запрос без возвращения данных
+    // выполнить запрос без возвращения данных, базовый метод для работы с Бд
     private function execute($sql, $params = [])
     {
-        $sth = $this->pdo->prepare($sql);
-        return $sth->execute($params);
+        $sth = $this->pdo->prepare($sql); // Подготавливаем запрос
+        return $sth->execute($params); // Выполняем с параметрами
     }
 
     // получение ОДНОЙ записи
