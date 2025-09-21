@@ -191,22 +191,26 @@ Message: {
 Тип запроса: POST
 
 **Параметры JSON body:**
-{
-    "method": "updateUserName",
-    "token": "string", - токен авторизации 
-    "newName": "string" - новое имя пользователя
-}
+```
+   {
+       "method": "updateUserName",
+       "token": "string", - токен авторизации 
+       "newName": "string" - новое имя пользователя
+   }
+```
 
 **Успешный ответ**
-{
-    "result": "ok",
-    "data": {
-        "id": "number",
-        "name": "string",
-        "login": "string",
-        "token": "string"
-    }
-}
+```
+   {
+       "result": "ok",
+       "data": {
+           "id": "number",
+           "name": "string",
+           "login": "string",
+           "token": "string"
+       }
+   }
+```
 
 **Ошибки**
 
