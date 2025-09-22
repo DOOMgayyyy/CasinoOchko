@@ -17,7 +17,6 @@ function result($params) {
             case 'login': return $app->login($params);
             case 'logout': return $app->logout($params);
             case 'registration': return $app->registration($params);
-            case 'updateUserName': return $app->updateUserName($params);//обновление имени
             // chat
             case 'sendMessage': return $app->sendMessage($params);
             case 'getMessages': return $app->getMessages($params);
@@ -26,11 +25,5 @@ function result($params) {
     }
     return ['error' => 101];
 }
-//определение памаетра 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $input = json_decode(file_get_contents('php://input'), true) ?? [];
-    $params = array_merge($_GET, $input);
-} else {
-    $params = $_GET;
-}
-echo json_encode(Answer::response(result($params)), JSON_UNESCAPED_UNICODE);
+
+echo json_encode(Answer::response(result($_GET)), JSON_UNESCAPED_UNICODE);
