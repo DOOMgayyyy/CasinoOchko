@@ -11,7 +11,7 @@
   --accent: #8f8f8f; /* Кнопки */
   --accent-hover: #bfbfbf; /* Ховер для ссылок/кнопок */
   --shadow: 0 10px 30px rgba(0,0,0,.45);
-  --radius: 14px;
+  --radius: 12px;
 }
 
 * { box-sizing: border-box; }
@@ -20,7 +20,8 @@
 .brand-logo{
   position: fixed;
   left: 50%;
-  top: 3%;
+  transform: translateX(-50%);
+  top: calc(50vh - 300px); /* выше центра экрана на 300px */
   transform: translateX(-50%);
 
   font-family: "Jersey 10", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -28,6 +29,7 @@
   font-size: 72px;
   pointer-events: none;
 }
+
 .brand-logo .brand-white{ color: #ffffff; }
 .brand-logo .brand-yellow{ color: #FFC107; }
 
@@ -60,59 +62,55 @@ html, body, #root{
 
 .sign-wrap{ 
   width: 100%; 
-  max-width: 560px;
+  max-width: 444px;
 }
 
 .sign-title{
   text-align: center;
   font-size: 36px;
   font-weight: 400;
-  margin: 40px 0 18px;
+  margin: 0px 0 18px;
 }
 
 .sign-card{
   background: var(--card);
   border: 1px solid var(--stroke);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 10px 28px 20px;
-}
-
-.field{
-  margin: 14px 0 18px; 
+  /* box-shadow: var(--shadow); */
+  padding: 15px 12px 10px;
 }
 
 .label{
   display: block;
   font-size: 24px;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 .input{
   width: 100%;
   font-size: 24px;
-  height: 44px;
-  border-radius: 10px;
+  height: 34px;
+  border-radius: 6px;
   border: 1px solid var(--stroke);
   background: var(--field);
   color: var(--text);
   padding: 10px 14px;
   outline: none;
-  transition: border-color .15s ease, box-shadow .15s ease;
+  /* transition: border-color .15s ease, box-shadow .15s ease; */
   font-family: inherit;
 }
 .input::placeholder{ color: #7f848c; }
 .input:focus{
   border-color: #3a3f47;
-  box-shadow: 0 0 0 3px rgba(80,115,255,.12);
+  /* box-shadow: 0 0 0 3px rgba(80,115,255,.12); */
 }
 
 .actions{
   height: 24px;
   display: flex;
   justify-content: flex-end;
-  margin-top: 6px;
+  margin-top: 7px;
 }
 
 .btn-link{
@@ -129,6 +127,7 @@ html, body, #root{
   transition: color .15s ease, transform .05s ease;
   font-family: inherit;
   text-decoration: none; /* на случай, если это <a> */
+  /* font-weight: 400px; */
 }
 .btn-link:hover{ color: var(--accent-hover); }
 .btn-link:active{ transform: translateY(1px); }
