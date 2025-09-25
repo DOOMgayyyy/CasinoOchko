@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/../analitic
+/analitic
 
 # production
 /build
