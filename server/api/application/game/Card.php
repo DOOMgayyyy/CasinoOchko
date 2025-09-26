@@ -8,17 +8,17 @@
  */
 class Card {
     /**
-     * @var string $suit Масть карты (hearts, diamonds, clubs, spades)
+     * Переменная $suit - Масть карты (hearts, diamonds, clubs, spades)
      */
     public $suit;
     
     /**
-     * @var string $rank Ранг карты (A, 2, 3, ..., 10, J, Q, K)
+     * Переменная $rank -  Ранг карты (A, 2, 3, ..., 10, J, Q, K)
      */
     public $rank;
     
     /**
-     * @var int $value Базовое значение карты для подсчета очков
+     * Переменная $value -  Базовое значение карты для подсчета очков
      */
     public $value;
 
