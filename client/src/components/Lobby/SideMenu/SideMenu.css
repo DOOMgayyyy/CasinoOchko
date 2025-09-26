@@ -19,6 +19,8 @@
     display: flex;
     flex-direction: column;
     animation: slideIn 0.3s ease;
+    border: 1px solid #3d3d3d;  
+    box-sizing: border-box;
 }
 
 @keyframes slideIn {
@@ -54,14 +56,18 @@
 
 .player-info-section {
     
-    padding: 20px;
-    
+    padding: 20px 5px 15px 5px;
+    border-bottom: 1px solid #555;
+    margin-left: 20px; 
+    margin-right:22px; 
+    margin-bottom: 15px;
 }
 
 .player-name-edit {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .player-name-label {
@@ -81,7 +87,7 @@
     
     color: #8F8F8F;
     cursor: pointer;
-    padding: 5px 10px;
+   
     font-size: 0.9rem;
     font-family: 'Handjet', monospace;
     
@@ -101,7 +107,7 @@
     font-family: 'Handjet', monospace;
     font-size: 1.5rem;
     text-align: left; 
-    margin-bottom: 25px;
+    margin-bottom: 27px;
 }
 
 .stats-grid {
@@ -152,13 +158,19 @@
     background: #444;
 }
 .menu-links {
-  width: 298px;
+ 
     height: 114px;
     position: absolute;
     top: 780px;
     left: 21px;
+    right: 21px; 
+    padding-top: 11px;
     
-   /* ЭТА ЛИНИЯ */
+   font-family: 'Handjet', monospace;
+   
+    border-top: 1px solid #555; /* Линия сверху */
+     margin-left: 5px;  /* Отступ линии слева */
+    margin-right: 1520px;
     
     
     
@@ -167,13 +179,7 @@
     
 }
 
-.menu-divider {
-    height: 1px;
-    border-top: 1px solid #555; 
-    margin: 0 ;
-    margin-bottom: 10px;
-    
-}
+
 
 .menu-link {
     flex: 1;
