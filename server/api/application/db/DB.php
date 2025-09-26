@@ -41,8 +41,12 @@ class DB {
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getUserByLogin($login) {
-        return $this->query("SELECT * FROM users WHERE login=?", [$login]);
+    public function getUserByLogin($name) {
+        return $this->query("SELECT * FROM users WHERE login=?", [$name]);
+    }
+
+    public function getUserByEmail($email) {
+        return $this->query("SELECT * FROM users WHERE email=?", [$email]);
     }
 
     public function getUserByToken($token) {
@@ -53,8 +57,8 @@ class DB {
         $this->execute("UPDATE users SET token=? WHERE id=?", [$token, $userId]);
     }
 
-    public function registration($login, $password, $name) {
-        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $hash, $name]);
+    public function registration($email, $password, $name) {
+        $this->execute("INSERT INTO users (email,password,name) VALUES (?, ?, ?)",[$email, $password, $name]);
     }
 
     public function getChatHash() {

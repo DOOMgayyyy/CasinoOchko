@@ -11,10 +11,10 @@ class User
     {
         return $this->db->getUserByToken($token);
     }
-
-    public function login($login, $hash, $rnd)
+public function login($email, $hash, $rnd)
     {
-        $user = $this->db->getUserByLogin($login);
+        // 1. Ищем пользователя по E-mail
+        $user = $this->db->getUserByEmail($email);
         if ($user) {
             if (md5($user->password . $rnd) === $hash) {
                 $token = md5(rand());
@@ -25,9 +25,9 @@ class User
                     'token' => $token
                 ];
             }
-            return ['error' => 1002];
+            return ['error' => 1002]; // Неверный пароль
         }
-        return ['error' => 1005];
+        return ['error' => 1005]; // Пользователь не существует
     }
 
     public function logout($token)
@@ -40,34 +40,36 @@ class User
         return ['error' => 1003];
     }
 
-    public function registration($login, $password, $name)
-    {
-        //проверка логина
-        $user = $this->db->getUserByLogin($login);
-        if ($user) {
-            return ['error' => 1001];
-        }
-
-        //проверка имени
-        if (!$this->isNameUnique($name)) {
-            return ['error' => 1010];
-        }
-
-        //все гуд регестрируем
-        $this->db->registration($login, $password, $name);
-        $user = $this->db->getUserByLogin($login);
-
-        if ($user) {
-            $token = md5(rand());
-            $this->db->updateToken($user->id, $token);
-            return [
-                'id' => $user->id,
-                'name' => $user->name,
-                'token' => $token
-            ];
-        }
-        return ['error' => 1004];
+    public function registration($email, $password, $name)
+{
+    //проверка логина (уникальность имени пользователя)
+    $user = $this->db->getUserByLogin($name);
+    if ($user) {
+        return ['error' => 1001];
     }
+
+    //проверка email (уникальность)
+    $user = $this->db->getUserByEmail($email);
+    if ($user) {
+        return ['error' => 1007];
+    }
+
+    //все гуд регестрируем
+    $this->db->registration($email, $password, $name);
+    $user = $this->db->getUserByEmail($email);
+
+    if ($user) {
+        $token = md5(rand()); 
+        $this->db->updateToken($user->id, $token);
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'token' => $token
+        ];
+    }
+    return ['error' => 1004];
+}
+
     //обновление имени с проверкой уникальности 
     public function updateUserName($userId, $newName)
     {
