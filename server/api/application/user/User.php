@@ -21,7 +21,7 @@ public function login($email, $hash, $rnd)
                 $this->db->updateToken($user->id, $token);
                 return [
                     'id' => $user->id,
-                    'name' => $user->name,
+                    'email' => $user->email,
                     'token' => $token
                 ];
             }
