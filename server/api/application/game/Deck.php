@@ -1,7 +1,6 @@
 <?php
 
 require_once('Card.php');
-
 /**
  * Класс Deck - представляет колоду игральных карт
  * 
@@ -9,7 +8,8 @@ require_once('Card.php');
  * Предоставляет функциональность для перемешивания, раздачи карт
  * и управления состоянием колоды.
  */
-class Deck {
+class Deck
+{
      # $cards - Массив карт в колоде
     private $cards = [];
     
@@ -44,7 +44,8 @@ class Deck {
      * Автоматически создает полную колоду из 52 карт
      * при создании экземпляра класса.
      */
-    public function __construct() {
+    public function __construct() 
+    {
         $this->createDeck();
     }
 
@@ -57,7 +58,8 @@ class Deck {
      * 
      * @return void
      */
-    private function createDeck() {
+    private function createDeck() 
+    {
         $this->cards = [];
         
         # Создание карты для каждой масти
@@ -77,7 +79,8 @@ class Deck {
      * 
      * @return Deck Возвращает текущий экземпляр для цепочки вызовов
      */
-    public function shuffle() {
+    public function shuffle() 
+    {
         shuffle($this->cards);
         return $this;
     }
@@ -90,7 +93,8 @@ class Deck {
      * 
      * @return Card|null Вытянутая карта или null если колода пуста
      */
-    public function draw() {
+    public function draw() 
+    {
         if (empty($this->cards)) {
             return null; # Колода пуста - нечего раздавать
         }
@@ -107,7 +111,8 @@ class Deck {
      * 
      * @return array Массив объектов Card
      */
-    public function getCards() {
+    public function getCards() 
+    {
         return $this->cards;
     }
 
@@ -119,7 +124,8 @@ class Deck {
      * 
      * @return int Количество карт в колоде
      */
-    public function getCount() {
+    public function getCount() 
+    {
         return count($this->cards);
     }
 
@@ -132,7 +138,8 @@ class Deck {
      * 
      * @return Deck Возвращает текущий экземпляр для цепочки вызовов
      */
-    public function reset() {
+    public function reset() 
+    {
         $this->createDeck();
         return $this;
     }

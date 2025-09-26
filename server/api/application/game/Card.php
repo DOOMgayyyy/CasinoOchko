@@ -1,12 +1,12 @@
 <?php
-
 /**
  * Класс Card - представляет игральную карту
  * 
  * Каждая карта имеет масть, ранг и базовое значение для подсчета очков.
  * Используется в игре Очко (Блэкджек) для создания колоды и расчета очков.
  */
-class Card {
+class Card 
+{
      # Переменная $suit - Масть карты (hearts, diamonds, clubs, spades)
     public $suit;
     
@@ -25,7 +25,8 @@ class Card {
      * @param string $suit Масть карты
      * @param string $rank Ранг карты
      */
-    public function __construct($suit, $rank) {
+    public function __construct($suit, $rank) 
+    {
         $this->suit = $suit;
         $this->rank = $rank;
         $this->value = $this->calculateValue($rank);
@@ -42,7 +43,8 @@ class Card {
      * @param string $rank Ранг карты
      * @return int Базовое значение карты
      */
-    private function calculateValue($rank) {
+    private function calculateValue($rank) 
+    {
         switch ($rank) {
             case 'A':
                 return 11; # Туз по умолчанию 11, может быть изменен на 1
@@ -62,7 +64,8 @@ class Card {
      * 
      * @return string Строковое представление карты
      */
-    public function __toString() {
+    public function __toString() 
+    {
         return $this->rank . ' of ' . $this->suit;
     }
 }

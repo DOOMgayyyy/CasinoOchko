@@ -1,12 +1,12 @@
 <?php
-
 /**
  * Класс gameLogic - содержит игровую логику для игры Очко (Блэкджек)
  * Предоставляет статические методы для расчета очков руки,
  * проверки на блэкджек и определения перебора.
  * Реализует правила игры Очко с правильной обработкой тузов.
  */
-class gameLogic {
+class gameLogic 
+{
     /**
      * Рассчитывает очки руки с учетом правил игры Очко
      * 
@@ -23,7 +23,8 @@ class gameLogic {
      * @param array $cards Массив объектов Card
      * @return int Оптимальное количество очков для данной руки
      */
-    public static function calculateHandScore(array $cards) {
+    public static function calculateHandScore(array $cards) 
+    {
         $score = 0;  # Общая сумма очков
         $aces = 0;   # Количество тузов в руке
 
@@ -57,7 +58,8 @@ class gameLogic {
      * @param array $cards Массив объектов Card
      * @return bool true если рука является блэкджеком, false иначе
      */
-    public static function isBlackjack(array $cards) {
+    public static function isBlackjack(array $cards) 
+    {
         return count($cards) === 2 && self::calculateHandScore($cards) === 21;
     }
 
@@ -71,7 +73,8 @@ class gameLogic {
      * @param array $cards Массив объектов Card
      * @return bool true если рука является перебором, false иначе
      */
-    public static function isBust(array $cards) {
+    public static function isBust(array $cards) 
+    {
         return self::calculateHandScore($cards) > 21;
     }
 }
