@@ -5,7 +5,17 @@
   width: 100%;
   background: transparent;
   padding: 20px 5px 15px 5px;
-  min-height: 73px; // 
+  min-height: 73px;
+
+  @media screen and (max-width: 768px) {
+    padding: 15px 5px 10px 5px;
+    min-height: 60px;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 10px 5px 8px 5px;
+    min-height: 50px;
+  }
 
   .change-name-card {
     width: 100%;
@@ -22,6 +32,16 @@
       font-family: 'Handjet', monospace;
       font-size: 40px;
       margin-bottom: 16px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 32px;
+        margin-bottom: 12px;
+      }
+
+      @media screen and (max-width: 480px) {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
     }
 
     .field {
@@ -33,6 +53,16 @@
         font-family: 'Handjet', monospace;
         font-size: 35px;
         margin-bottom: 8px;
+
+        @media screen and (max-width: 768px) {
+          font-size: 28px;
+          margin-bottom: 6px;
+        }
+
+        @media screen and (max-width: 480px) {
+          font-size: 24px;
+          margin-bottom: 4px;
+        }
       }
 
       .input {
@@ -44,6 +74,16 @@
         color: #ffffff;
         font-family: 'Handjet', monospace;
         font-size: 20px;
+
+        @media screen and (max-width: 768px) {
+          padding: 10px;
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: 480px) {
+          padding: 8px;
+          font-size: 16px;
+        }
 
         &:focus {
           outline: none;
@@ -63,6 +103,20 @@
       margin-top: 8px;
       padding: 0 16px;
 
+      @media screen and (max-width: 768px) {
+        gap: 15px;
+        margin-top: 6px;
+        padding: 0 12px;
+      }
+
+      @media screen and (max-width: 480px) {
+        gap: 10px;
+        margin-top: 4px;
+        padding: 0 8px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       .btn-link {
         background: none;
         border: none;
@@ -76,6 +130,17 @@
         justify-content: center;
         transition: all 0.2s ease;
         height: 36px;
+
+        @media screen and (max-width: 768px) {
+          font-size: 26px;
+          height: 32px;
+        }
+
+        @media screen and (max-width: 480px) {
+          font-size: 22px;
+          height: 40px;
+          justify-content: flex-start;
+        }
 
         &:hover {
           color: #262626;
@@ -103,6 +168,20 @@
         justify-content: center;
         height: 36px;
         line-height: 1;
+
+        @media screen and (max-width: 768px) {
+          font-size: 26px;
+          height: 32px;
+          min-width: 120px;
+          padding: 0 20px;
+        }
+
+        @media screen and (max-width: 480px) {
+          font-size: 22px;
+          height: 40px;
+          min-width: 100%;
+          padding: 0 16px;
+        }
 
         span {
           display: inline-flex;
