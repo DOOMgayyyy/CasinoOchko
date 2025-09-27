@@ -2,37 +2,29 @@
 
 class DB {
     private $pdo;
-
-    function __construct() {
-        // MySQL
-        
-        $host = '127.0.0.1';
-        $port = '3306';
-        $user = 'root';
-        $pass = '---';
-        $db = 'casinoochko';
-        $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
+    // разкомент тут MYsql и смена названия базы данных
+    function __construct()
+    {
+        $host = '127.0.0.1';// ip для подключения к бд
+        $port = '3306';// порт 
+        $user = 'root';// логин для входа в бд
+        $pass = ''; // пароль для бд
+        $db = 'CasinoOchko';// название базы данных 
+        $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";// формирование команды для подключения к базе данных
+        // cоздаем объект PDO для работы с БД
         $this->pdo = new PDO($connect, $user, $pass);
-        
-
-        // Postgres
-        // $host = 'localhost';
-        // $port = '5432';
-        // $user = 'postgres';
-        // $pass = '---';
-        // $db = 'nopainnogame';
-        // $connect = "pgsql:host=$host;port=$port;dbname=$db;";
-        // $this->pdo = new PDO($connect, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
-    public function __destruct() {
+    public function __destruct()
+    {
         $this->pdo = null;
     }
 
-    // выполнить запрос без возвращения данных
-    private function execute($sql, $params = []) {
-        $sth = $this->pdo->prepare($sql);
-        return $sth->execute($params);
+    // выполнить запрос без возвращения данных, базовый метод для работы с Бд
+    private function execute($sql, $params = [])
+    {
+        $sth = $this->pdo->prepare($sql); // Подготавливаем запрос
+        return $sth->execute($params); // Выполняем с параметрами
     }
 
     // получение ОДНОЙ записи
@@ -62,7 +54,7 @@ class DB {
     }
 
     public function registration($login, $password, $name) {
-        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $hash, $name]);
+        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $password, $name]);
     }
 
     public function getChatHash() {

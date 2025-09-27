@@ -8,7 +8,7 @@ const { CHAT_TIMESTAMP, HOST } = CONFIG;
 class Server {
     HOST = HOST;
     store: Store;
-    chatInterval: NodeJS.Timer | null = null;
+    chatInterval: NodeJS.Timeout | null = null;
     showErrorCb: (error: TError) => void = () => {};
 
     constructor(store: Store) {

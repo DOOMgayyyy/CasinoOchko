@@ -1,28 +1,43 @@
-import React from 'react';
-import Store from './services/store/Store';
-import Server from './services/server/Server';
-import Popup from './components/Popup/Popup';
-import PageManager from './pages/PageManager';
+import React, { useState } from 'react';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import Lobby from './components/Lobby/Lobby';
 
-import './App.scss';
+export const StoreContext = React.createContext<any>({ getUser: () => null });
+// React.createContext<Store>(null!);
+export const ServerContext = React.createContext<any>({});
+// React.createContext<Server>(null!);
 
-export const StoreContext = React.createContext<Store>(null!);
-export const ServerContext = React.createContext<Server>(null!);
+let setPageExternal: ((p: string) => void) | null = null;
+window.addEventListener('hashchange', () => {
+  const p = window.location.hash.replace('#', '') || 'Login';
+  setPageExternal?.(p);
+});
 
-const App: React.FC = () => {
-    const store = new Store();
-    const server = new Server(store);
+const App = () => {
+  const [page, setPage] = useState(
+    window.location.hash.replace('#', '') || 'Login'
+  );
+  setPageExternal = setPage;
 
-    return (
-        <StoreContext.Provider value={store}>
-            <ServerContext.Provider value={server}>
-                <div className='app'>
-                    <Popup />
-                    <PageManager />
-                </div>
-            </ServerContext.Provider>
-        </StoreContext.Provider>
-    );
-}
+  return (
+    <div>
+      {page === 'Login' && <Login />}
+      {page === 'Register' && <Register />}
+       <Lobby 
+          player={{ name: 'Player', balance: 1000 }}
+          onQuickGame={() => {}} // Пустая функция
+          onPrivateRoom={() => {}} // Пустая функция
+          onShowLeaderboard={() => {}} // Пустая функция
+          onShowChat={() => {}} // Пустая функция
+          onShowRules={() => {}} // Пустая функция
+          onShowAuthors={() => {}} // Пустая функция
+          onLogout={() => {
+            window.location.hash = 'Login';
+          }}
+        />
+    </div>
+  );
+};
 
 export default App;
