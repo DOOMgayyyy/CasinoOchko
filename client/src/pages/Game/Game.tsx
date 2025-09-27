@@ -16,7 +16,7 @@ const GamePage: React.FC<IBasePage> = (props: IBasePage) => {
     // инициализация канваса
     let canvas: Canvas | null = null;
     const Canvas = useCanvas(render);
-    let interval: NodeJS.Timer | null = null;
+    let interval: NodeJS.Timeout | null = null;
     // инициализация карты спрайтов
     const [
         [spritesImage],

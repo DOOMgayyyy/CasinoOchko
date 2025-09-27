@@ -38,7 +38,7 @@ class Canvas {
     }
     dx = 0;
     dy = 0;
-    interval: NodeJS.Timer;
+    interval: NodeJS.Timeout;
     callbacks: {
         mouseMove: (x: number, y: number) => void;
         mouseClick: (x: number, y: number) => void;
