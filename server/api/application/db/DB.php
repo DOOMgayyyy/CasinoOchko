@@ -9,7 +9,7 @@ class DB {
         $port = '3306';// порт 
         $user = 'root';// логин для входа в бд
         $pass = ''; // пароль для бд
-        $db = 'CasinoOchko';// название базы данных 
+        $db = 'casinochko';// название базы данных 
         $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";// формирование команды для подключения к базе данных
         // cоздаем объект PDO для работы с БД
         $this->pdo = new PDO($connect, $user, $pass);
@@ -41,8 +41,12 @@ class DB {
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getUserByLogin($login) {
-        return $this->query("SELECT * FROM users WHERE login=?", [$login]);
+    public function getUserByLogin($name) {
+        return $this->query("SELECT * FROM users WHERE login=?", [$name]);
+    }
+
+    public function getUserByEmail($email) {
+        return $this->query("SELECT * FROM users WHERE email=?", [$email]);
     }
 
     public function getUserByToken($token) {
@@ -53,8 +57,8 @@ class DB {
         $this->execute("UPDATE users SET token=? WHERE id=?", [$token, $userId]);
     }
 
-    public function registration($login, $password, $name) {
-        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $password, $name]);
+    public function registration($email, $password, $name) {
+        $this->execute("INSERT INTO users (email,password,name) VALUES (?, ?, ?)",[$email, $password, $name]);
     }
 
     public function getChatHash() {

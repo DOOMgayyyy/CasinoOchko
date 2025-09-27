@@ -16,8 +16,9 @@ class Application
 
     public function login($params)
     {
-        if ($params['login'] && $params['hash'] && $params['rnd']) {
-            return $this->user->login($params['login'], $params['hash'], $params['rnd']);
+
+        if ($params['email'] && $params['hash'] && $params['rnd']) {
+            return $this->user->login($params['email'], $params['hash'], $params['rnd']);
         }
         return ['error' => 242];
     }
@@ -36,8 +37,13 @@ class Application
 
     public function registration($params)
     {
-        if ($params['login'] && $params['password'] && $params['name']) {
-            return $this->user->registration($params['login'], $params['password'], $params['name']);
+
+        if ($params['email'] && !filter_var($params['email'], FILTER_VALIDATE_EMAIL)) {
+            return ['error' => 242];
+        }
+
+        if ($params['email'] && $params['password'] && $params['name']) {
+            return $this->user->registration($params['email'], $params['password'], $params['name']);
         }
         return ['error' => 242];
     }
