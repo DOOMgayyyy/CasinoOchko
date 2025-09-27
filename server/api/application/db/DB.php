@@ -9,7 +9,7 @@ class DB {
         $port = '3306';// порт 
         $user = 'root';// логин для входа в бд
         $pass = ''; // пароль для бд
-        $db = 'CasinoOchko';// название базы данных 
+        $db = 'casinochko';// название базы данных 
         $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";// формирование команды для подключения к базе данных
         // cоздаем объект PDO для работы с БД
         $this->pdo = new PDO($connect, $user, $pass);
