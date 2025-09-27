@@ -16,31 +16,37 @@ class Player
     }
 
     //добавление карты в руку
-    public function addCard(Card $card) 
+    public function addCard(Card $card)
     {
         $this->cards[] = $card;
         return $this;
     }
 
     //расчет очков руки
-    public function getScore() 
+    public function getScore()
     {
         return gameLogic::calculateHandScore($this->cards);
     }
 
     //делаем ставку если хватает денег. amount - сумма ставки 
-    public function makeBet($amount) 
+    public function makeBet($amount)
     {
+        //минимальная ставка 50
+        if ($amount < 50) {
+            return 0;
+        }
+
         if ($this->balance >= $amount) {
             $this->balance -= $amount;
             return $amount;
         }
+
         return 0;
     }
 }
 
 //проверка на перебор руки
-function isBust($hand) 
+function isBust($hand)
 {
     if ($hand instanceof Player) {
         return $hand->getScore() > 21;
