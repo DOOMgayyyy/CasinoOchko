@@ -12,8 +12,6 @@
 
 .lobby-background {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
@@ -25,8 +23,7 @@
 .lobby-background::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
+    
     width: 100%;
     height: 100%;
     background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
@@ -71,7 +68,7 @@
 }
 
 .balance-amount {
-    color: #2196F3; /* СИНИЙ ЦВЕТ ДЛЯ СУММЫ $1000 */
+    color: #2196F3; 
     font-size: 1.3rem;
     font-weight: bold;
     font-family: 'Handjet', monospace;
@@ -89,7 +86,6 @@
     padding-left: 10px;
 }
 
-/* Стили для кнопок меню и добавления денег */
 .menu-btn:hover, .add-money-btn:hover {
     background: #444;
     border-color: #666;
@@ -101,48 +97,43 @@
     transform: scale(0.98);
 }
 
-/* Стили для основных кнопок лобби */
+
 .lobby-btn:hover {
     background: #3A3A3A;
     border-color: #4A4A4A;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    
 }
 
 .lobby-btn:active {
     background: #4A4A4A;
     border-color: #5A5A5A;
     transform: scale(0.98);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    
 }
 
-/* Плавные переходы для всех кнопок */
-.menu-btn, .add-money-btn, .lobby-btn {
-    transition: all 0.2s ease;
-}
 
 .lobby-main {
+
    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh - 70px);
     
+    align-items: center;
+     display: flex;
+    flex-direction: column;
+    justify-content: safe center; 
+    height: calc(100vh - 70px);
+     padding: 40px 0;
+     gap: 60px; 
 }
 
 .logo {
     font-family: 'Jersey 10', sans-serif;
-    font-size: 128px;
-    
-    
-   
-    margin-bottom: 4rem;
-    
-    width: 515px;
-    height: 137px;
+    font-size: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
+   
+   
+    margin-bottom: 4rem;
 }
 
 .logo-casino {
@@ -152,27 +143,24 @@
 
 .logo-ochko {
     color: #FFD700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    
 }
 
 .lobby-btn {
-    margin: 12px 0;
-   
-    width: 400px;
+   width: 400px;
     height: 100px;
-    top: 385px;
-    left: 760px;
     background: #2A2A2A;
     color: #ffffff;
     border: 1px solid rgba(42, 42, 42, 1);
     border-radius: 12px;
-    
     font-family: 'Handjet', monospace;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 600;
-    
-    /* Убрали transition отсюда - оно теперь в общем правиле */
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: -40px 0; 
+    flex-shrink: 0;
+    transition: all 0.2s ease;
 }

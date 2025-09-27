@@ -152,6 +152,7 @@
     font-size: 1.2rem;
     cursor: pointer;
     width: 100%;
+    position: absolute;
 }
 
 .menu-close-btn:hover {
@@ -159,42 +160,35 @@
 }
 .menu-links {
  
-    height: 114px;
-    position: absolute;
-    top: 780px;
-    left: 21px;
-    right: 21px; 
-    padding-top: 11px;
-    
-   font-family: 'Handjet', monospace;
-   
-    border-top: 1px solid #555; /* Линия сверху */
-     margin-left: 5px;  /* Отступ линии слева */
-    margin-right: 1520px;
-    
-    
-    
-    
-    font-family: 'Handjet', monospace;
-    
+     margin-top: auto; /* Прижимаем к низу */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 
 
 .menu-link {
-    flex: 1;
-    
-    background: transparent;
+     background: transparent;
     color: white;
     cursor: pointer;
-   
     font: 1.3rem 'Handjet', monospace;
     text-align: left;
     text-transform: lowercase;
     display: flex;
     align-items: center;
+    padding: 10px 0;
+    border: none;
+    width: 100%;
+    transition: color 0.3s ease;
 }
 
+.menu-divider {
+     height: 1px;
+    background-color: #555;
+    margin: 0 0 15px 0;
+    width: 100%; 
+}
 
 
 
