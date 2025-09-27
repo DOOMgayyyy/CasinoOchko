@@ -5,6 +5,13 @@ const Register: React.FC = () => {
   const [showPwd, setShowPwd] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
+const handleRegister = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    window.location.hash = 'Lobby';
+  };
+
+
   return (
     <div className="main-register">
       <main className="sign-wrap">
@@ -17,6 +24,7 @@ const Register: React.FC = () => {
         <h1 className="sign-title">Регистрация</h1>
 
         <section className="sign-card" role="form" aria-label="Форма регистрации">
+          <form onSubmit={handleRegister}>
           <div className="field">
             <label className="label" htmlFor="email">Email:</label>
             <input
@@ -90,16 +98,25 @@ const Register: React.FC = () => {
           </div>
 
           <div className="actions actions-split">
-            <a className="btn-link" href="#Login">
+              {/* ИЗМЕНИТЬ ССЫЛКУ НА КНОПКУ С ОБРАБОТЧИКОМ */}
+              <button 
+                type="button"
+                className="btn-link" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.hash = 'Login';
+                }}
+                >
               <span className="arrow">&lt;</span>
               <span>авторизация</span>
-            </a>
+            </button>
 
-            <button className="btn-link" type="button">
+            <button className="btn-link" type="submit">
               <span className="arrow">&gt;</span>
               <span>создать аккаунт</span>
             </button>
           </div>
+          </form>
         </section>
       </main>
     </div>
