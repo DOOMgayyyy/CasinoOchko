@@ -54,7 +54,7 @@ class DB {
     }
 
     public function registration($login, $password, $name) {
-        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $hash, $name]);
+        $this->execute("INSERT INTO users (login,password,name) VALUES (?, ?, ?)",[$login, $password, $name]);
     }
 
     public function getChatHash() {

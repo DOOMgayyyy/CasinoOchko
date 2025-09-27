@@ -13,8 +13,8 @@ class Answer
         '1005' => 'User is no exists',
         '1006' => 'Other user is playing wright now. If you doesn`t, please change the password',
         '1007' => 'user with this email is already registered',
-        '1009' => 'Error updating user name', //техническая ошибка ошибка
-        '1010' => 'Name is already taken', //новая ошибка имя занято
+        '1009' => 'Error updating user name', // Техническая ошибка
+        '1010' => 'Name is already taken', // Новая ошибка - имя занято
         '404' => 'not found',
         '605' => 'invalid teamId',
         '700' => 'No skins',

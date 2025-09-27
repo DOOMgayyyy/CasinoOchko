@@ -42,7 +42,7 @@ class Application
         return ['error' => 242];
     }
 
-    //обновление имени
+    // Обновление имени
     public function updateUserName($params)
     {
         if ($params['token'] && $params['newName']) {
