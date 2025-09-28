@@ -7,12 +7,17 @@ class Player
     public $id;
     public $cards = [];
     public $balance;
+    public $currentBet = 0;
+    public $splitHands = []; //для сплита рука
+    public $activeHandIndex = 0; // Индекс активной руки
 
     public function __construct($id, $balance = 1000) //заглушка 1000 баланс 
     {
         $this->id = $id;
         $this->balance = $balance;
         $this->cards = [];
+        $this->splitHands = [];
+        $this->activeHandIndex = 0;
     }
 
     //добавление карты в руку
@@ -38,10 +43,38 @@ class Player
 
         if ($this->balance >= $amount) {
             $this->balance -= $amount;
+            $this->currentBet = $amount;
             return $amount;
         }
 
         return 0;
+    }
+
+    //сплит
+    public function split()
+    {
+        //проверка возможен ли сплит
+        if (count($this->cards) != 2 || $this->cards[0]->rank !== $this->cards[1]->rank) {
+            return false;
+        }
+
+        //проверка хватит ли на ставку 
+        if ($this->balance < $this->currentBet) {
+            return false;
+        }
+
+        $this->balance -= $this->currentBet; //снятие ставки за 2 руку
+
+        //создание двух рук из 2 карт
+        $hand1 = [$this->cards[0]];
+        $hand2 = [$this->cards[1]];
+
+        //очищаем основную руку
+        $this->cards = [];
+        $this->splitHands = [$hand1, $hand2];
+        $this->activeHandIndex = 0;
+
+        return true;
     }
 }
 
