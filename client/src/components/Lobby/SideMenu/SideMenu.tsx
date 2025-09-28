@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SideMenu.css';
+import ChangeName from '../../ChangeName/ChangeName';
 
 export interface SideMenuProps {
     player: {
@@ -29,16 +30,34 @@ const SideMenu: React.FC<SideMenuProps> = ({
     onShowAuthors, 
     onLogout 
 }) => {
+    const [showChangeName, setShowChangeName] = useState(false);
+
+    const handleEditNameClick = () => {
+        setShowChangeName(true);
+    };
+
+    const handleChangeNameSuccess = () => {
+        onEditName();
+        setShowChangeName(false);
+    };
     return (
         <div className="side-menu-overlay" onClick={onClose}>
             <div className="side-menu" onClick={(e) => e.stopPropagation()}>
                
                 {/* Верхняя часть - имя игрока */}
                 <div className="player-info-section">
-                    <div className="player-name-edit">
-                        <span className="player-name-value">{player.name}</span>
-                        <button className="edit-name-btn" onClick={onEditName}>&lt; изменить</button>
-                    </div>
+                    {showChangeName ? (
+                        <ChangeName
+                            currentName={player.name}
+                            onClose={() => setShowChangeName(false)}
+                            onSuccess={handleChangeNameSuccess}
+                        />
+                    ) : (
+                        <div className="player-name-edit">
+                            <span className="player-name-value">{player.name}</span>
+                            <button className="edit-name-btn" onClick={handleEditNameClick}>&lt; изменить</button>
+                        </div>
+                    )}
                 </div>
 
                 {/* Статистика */}
