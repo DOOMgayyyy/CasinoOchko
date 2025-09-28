@@ -5,24 +5,24 @@ class DB {
 
     function __construct() {
         // MySQL
-        /*
+        
         $host = '127.0.0.1';
         $port = '3306';
         $user = 'root';
         $pass = '---';
-        $db = 'nopainnogame';
+        $db = 'casinoochko';
         $connect = "mysql:host=$host;port=$port;dbname=$db;charset=utf8";
         $this->pdo = new PDO($connect, $user, $pass);
-        */
+        
 
         // Postgres
-        $host = 'localhost';
-        $port = '5432';
-        $user = 'postgres';
-        $pass = '---';
-        $db = 'nopainnogame';
-        $connect = "pgsql:host=$host;port=$port;dbname=$db;";
-        $this->pdo = new PDO($connect, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+        // $host = 'localhost';
+        // $port = '5432';
+        // $user = 'postgres';
+        // $pass = '---';
+        // $db = 'nopainnogame';
+        // $connect = "pgsql:host=$host;port=$port;dbname=$db;";
+        // $this->pdo = new PDO($connect, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
     }
 
     public function __destruct() {
