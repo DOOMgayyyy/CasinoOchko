@@ -14,8 +14,7 @@ class Deck {
     ];
     
      # Массив всех рангов карт в колоде
-    private $ranks = [
-        'A',   
+    private $ranks = [  
         '2',   
         '3',   
         '4',   

@@ -3,7 +3,7 @@
 class Card {
     public $suit; # Масть карты 
     public $rank; # Ранг карты 
-    public $value;# Базовое значение карты для подсчета очков
+    public $value; # Базовое значение карты для подсчета очков
 
     public function __construct($suit, $rank) {
         $this->suit = $suit;
