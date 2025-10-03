@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './Lobby.css';
 import SideMenu from './SideMenu/SideMenu';
 import PrivateRoom from './PrivateRoom/PrivateRoom';
+import { IBasePage, PAGES } from '../PageManager';
  // Импортируем новый компонент
 
-export interface LobbyProps {
+export interface LobbyProps extends IBasePage {
     player: {
         name: string;
         balance: number;
@@ -26,10 +27,11 @@ const Lobby: React.FC<LobbyProps> = ({
     onShowChat,
     onShowRules,
     onShowAuthors,
-    onLogout
+    onLogout,
+    
 }) => {
     const [showSideMenu, setShowSideMenu] = useState(false);
-     const [showPrivateRoomPage, setShowPrivateRoomPage] = useState(false);
+    const [showPrivateRoomPage, setShowPrivateRoomPage] = useState(false);
 
     const [playerStats] = useState({
         totalGames: 156,

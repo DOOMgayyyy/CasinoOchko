@@ -7,7 +7,7 @@ const Preloader: React.FC<IBasePage> = (props: IBasePage) => {
     const { setPage } = props;
 
     useEffect(() => {
-        setTimeout(() => setPage(PAGES.LOGIN), 3000);
+        setTimeout(() => setPage(PAGES.LOGIN), 1);// стояло 3000, но нам это пока не особо надо
     });
 
     return (

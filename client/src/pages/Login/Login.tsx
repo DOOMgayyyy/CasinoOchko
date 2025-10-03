@@ -11,17 +11,22 @@ const Login: React.FC<IBasePage> = (props) => {
   const loginRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-    const registerClickHandler = async () => {
-      if (loginRef.current && passwordRef.current) {
-          const login = loginRef.current.value;
-          const password = passwordRef.current.value;
-          if (1) { // тестовое условие, чтобы логин всегда был успешный и работал без бекенда
-          //if (login && password && await server.login(login, password)) {
-              setPage(PAGES.REGISTER);
-          }
+  const loginClickHandler = async () => {
+    if (loginRef.current && passwordRef.current) {
+      const login = loginRef.current.value;
+      const password = passwordRef.current.value;
+      //if (1) { // тестовое условие, чтобы логин всегда был успешный и работал без бекенда
+      if (login && password && await server.login(login, password)) {
+          console.log("Just login")
+          setPage(PAGES.LOBBY);
       }
+    }
+  }
+  const setRegisterPage = async () => {
+    setPage(PAGES.REGISTER);
   }
 
+ 
   return (
     <div className="main-login">
       <main className="sign-wrap">
@@ -78,7 +83,7 @@ const Login: React.FC<IBasePage> = (props) => {
           <div className="actions">
             <button className="btn-link" type="button">
               <span className="arrow">&gt;</span>
-              <span>войти</span>
+              <span onClick = {loginClickHandler}>войти</span>
             </button>
           </div>
         </section>
@@ -87,7 +92,7 @@ const Login: React.FC<IBasePage> = (props) => {
           Впервые здесь?
           <a className="foot-link" href="#Register">
             <span className="arrow">&gt;</span>
-            <span onClick={registerClickHandler}>зарегистрироваться</span>
+            <span onClick={setRegisterPage}>зарегистрироваться</span>
           </a>
         </div>
       </main>

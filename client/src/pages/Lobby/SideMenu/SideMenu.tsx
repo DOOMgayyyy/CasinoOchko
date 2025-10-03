@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './SideMenu.css';
-import ChangeName from '../../ChangeName/ChangeName';
+import ChangeName from '../ChangeName/ChangeName';
 
 export interface SideMenuProps {
     player: {

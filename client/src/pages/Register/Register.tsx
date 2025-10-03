@@ -8,7 +8,20 @@ const Register: React.FC<IBasePage> = (props) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const { setPage } = props;
 
-  const backClickHandler = () => setPage(PAGES.PRELOADER);
+  //const backClickHandler = () => setPage(PAGES.PRELOADER);
+  const setLoginPage = async () => {
+    setPage(PAGES.LOGIN);
+  }
+  // const RegisterClickHandler = async () => {
+  //   if (loginRef.current && passwordRef.current) {
+  //     const login = loginRef.current.value;
+  //     const password = passwordRef.current.value;
+  //     if (1) { // тестовое условие, чтобы логин всегда был успешный и работал без бекенда
+  //     //if (login && password && await server.login(login, password)) {
+  //         setPage(PAGES.REGISTER);
+  //     }
+  //   }
+  // }
 
 
   return (
@@ -98,7 +111,7 @@ const Register: React.FC<IBasePage> = (props) => {
           <div className="actions actions-split">
             <a className="btn-link" href="#Login">
               <span className="arrow">&lt;</span>
-              <span onClick={backClickHandler}>авторизация</span>
+              <span onClick={setLoginPage}>авторизация</span>
             </a>
 
             <button className="btn-link" type="button">
