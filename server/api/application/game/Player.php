@@ -69,6 +69,10 @@ class Player
         $hand1 = [$this->cards[0]];
         $hand2 = [$this->cards[1]];
 
+        //добавляем по одной карте в каждую руку
+        $hand1[] = $deck->drawCard();
+        $hand2[] = $deck->drawCard();
+
         //очищаем основную руку
         $this->cards = [];
         $this->splitHands = [$hand1, $hand2];
