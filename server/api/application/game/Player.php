@@ -36,8 +36,8 @@ class Player
     //делаем ставку если хватает денег. amount - сумма ставки 
     public function makeBet($amount)
     {
-        //минимальная ставка 50
-        if ($amount < 50) {
+        //минимальная ставка 100
+        if ($amount < 100) {
             return 0;
         }
 
