@@ -11,7 +11,8 @@ class User
     {
         return $this->db->getUserByToken($token);
     }
-public function login($email, $hash, $rnd)
+    
+    public function login($email, $hash, $rnd)
     {
         // 1. Ищем пользователя по E-mail
         $user = $this->db->getUserByEmail($email);
@@ -22,6 +23,7 @@ public function login($email, $hash, $rnd)
                 return [
                     'id' => $user->id,
                     'email' => $user->email,
+                    'name' => $user->name,
                     'token' => $token
                 ];
             }
@@ -40,35 +42,31 @@ public function login($email, $hash, $rnd)
         return ['error' => 1003];
     }
 
-    public function registration($email, $password, $name)
-{
-    //проверка логина (уникальность имени пользователя)
-    $user = $this->db->getUserByLogin($name);
-    if ($user) {
-        return ['error' => 1001];
+    public function registration($email, $password, $name) {
+        //проверка логина (уникальность имени пользователя)
+        $user = $this->db->getUserByLogin($name);
+        if ($user) {
+            return ['error' => 1001];
+        }
+        //проверка email (уникальность)
+        $user = $this->db->getUserByEmail($email);
+        if ($user) {
+            return ['error' => 1007];
+        }
+        //все гуд регестрируем
+        $this->db->registration($email, $password, $name);
+        $user = $this->db->getUserByEmail($email);
+        if ($user) {
+            $token = md5(rand()); 
+            $this->db->updateToken($user->id, $token);
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'token' => $token
+            ];
+        }
+        return ['error' => 1004];
     }
-
-    //проверка email (уникальность)
-    $user = $this->db->getUserByEmail($email);
-    if ($user) {
-        return ['error' => 1007];
-    }
-
-    //все гуд регестрируем
-    $this->db->registration($email, $password, $name);
-    $user = $this->db->getUserByEmail($email);
-
-    if ($user) {
-        $token = md5(rand()); 
-        $this->db->updateToken($user->id, $token);
-        return [
-            'id' => $user->id,
-            'name' => $user->name,
-            'token' => $token
-        ];
-    }
-    return ['error' => 1004];
-}
 
     //обновление имени с проверкой уникальности 
     public function updateUserName($userId, $newName)

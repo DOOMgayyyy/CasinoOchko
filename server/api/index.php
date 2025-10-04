@@ -20,7 +20,17 @@ function result($params) {
             case 'updateUserName': return $app->updateUserName($params);// Обновление имени
             // chat
             case 'sendMessage': return $app->sendMessage($params);
-            case 'getMessages': return $app->getMessages($params);
+            case 'getMessages': return $app->getMessages($params); // loop
+
+            // menu
+            case 'getUserStat': return $app->getUserStat($params);
+            case 'getUserBalance': return $app->getUserBalance($params);
+            // lobby
+            case 'quickStart': return $app->quickStart($params);
+            case 'createPrivateRoom': return $app->createPrivateRoom($params);
+            case 'joinPrivateRoom': return $app->joinPrivateRoom($params);
+            case 'getRatingTable': return $app->getRatingTable($params);
+
             default: return ['error' => 102];
         }
     }

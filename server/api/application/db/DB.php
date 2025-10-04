@@ -41,9 +41,9 @@ class DB {
         return $sth->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getUserByLogin($name) {
+    /*public function getUserByLogin($name) {
         return $this->query("SELECT * FROM users WHERE login=?", [$name]);
-    }
+    }*/
 
     public function getUserByEmail($email) {
         return $this->query("SELECT * FROM users WHERE email=?", [$email]);

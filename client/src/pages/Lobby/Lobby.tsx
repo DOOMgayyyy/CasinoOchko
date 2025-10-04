@@ -3,32 +3,18 @@ import './Lobby.css';
 import SideMenu from './SideMenu/SideMenu';
 import PrivateRoom from './PrivateRoom/PrivateRoom';
 import { IBasePage, PAGES } from '../PageManager';
- // Импортируем новый компонент
 
+// Интерфейс стал намного проще
 export interface LobbyProps extends IBasePage {
     player: {
         name: string;
         balance: number;
     };
-    onQuickGame: () => void;
-    onPrivateRoom: () => void;
-    onShowLeaderboard: () => void;
-    onShowChat: () => void;
-    onShowRules: () => void;
-    onShowAuthors: () => void;
-    onLogout: () => void;
 }
 
-const Lobby: React.FC<LobbyProps> = ({ 
-    player, 
-    onQuickGame, 
-    onShowLeaderboard, 
-    onPrivateRoom,
-    onShowChat,
-    onShowRules,
-    onShowAuthors,
-    onLogout,
-    
+const Lobby: React.FC<LobbyProps> = ({
+    setPage, // Получаем setPage напрямую
+    player,
 }) => {
     const [showSideMenu, setShowSideMenu] = useState(false);
     const [showPrivateRoomPage, setShowPrivateRoomPage] = useState(false);
@@ -53,11 +39,17 @@ const Lobby: React.FC<LobbyProps> = ({
         console.log('Join private room');
         // Логика присоединения к комнате
     };
+    
+    // Функция выхода, которая перенаправляет на страницу логина
+    const handleLogout = () => {
+        // Здесь также может быть логика очистки сессии или токена
+        setPage(PAGES.LOGIN);
+    };
 
     // Если показываем страницу приватной комнаты
     if (showPrivateRoomPage) {
         return (
-            <PrivateRoom 
+            <PrivateRoom
                 player={player}
                 onBack={() => setShowPrivateRoomPage(false)} // Возврат в лобби
                 onCreateRoom={handleCreateRoom}
@@ -67,19 +59,16 @@ const Lobby: React.FC<LobbyProps> = ({
         );
     }
 
- 
-    
-    
     return (
         <div className="lobby">
             <div className="lobby-background"></div>
-            
+
             <header className="lobby-header">
                 <div className="header-left">
                     <button className="menu-btn" onClick={() => setShowSideMenu(true)}>☰</button>
                     <span className="player-name">{player.name}</span>
                 </div>
-            
+
                 <div className="header-right">
                     <span className="balance-text">Ваш баланс: </span>
                     <span className="balance-amount">${player.balance}</span>
@@ -92,33 +81,33 @@ const Lobby: React.FC<LobbyProps> = ({
                     <span className="logo-casino">CASIN</span>
                     <span className="logo-ochko">OCHKO</span>
                 </div>
-               
-                <button className="lobby-btn quick-game-btn" onClick={onQuickGame}>
+
+                {/* Используем setPage напрямую для навигации */}
+                <button className="lobby-btn quick-game-btn" onClick={() => setPage(PAGES.QUICK_GAME)}>
                     Быстрая игра
                 </button>
-                
-                 <button className="lobby-btn private-room-btn" onClick={() => setShowPrivateRoomPage(true)}>
+
+                <button className="lobby-btn private-room-btn" onClick={() => setShowPrivateRoomPage(true)}>
                     Приватная комната
                 </button>
-                
-                <button className="lobby-btn leaderboard-btn" onClick={onShowLeaderboard}>
+
+                <button className="lobby-btn leaderboard-btn" onClick={() => setPage(PAGES.LEADERBOARD)}>
                     Таблица лидеров
                 </button>
             </main>
 
             {showSideMenu && (
-                <SideMenu 
+                <SideMenu
                     player={player}
                     stats={playerStats}
                     onClose={() => setShowSideMenu(false)}
                     onEditName={handleEditName}
-                    onShowRules={onShowRules}
-                    onShowAuthors={onShowAuthors}
-                    onLogout={onLogout}
+                    // Передаем навигационные функции напрямую в SideMenu
+                    onShowRules={() => setPage(PAGES.RULES)}
+                    onShowAuthors={() => setPage(PAGES.AUTHORS)}
+                    onLogout={handleLogout}
                 />
             )}
-
-            
         </div>
     );
 };

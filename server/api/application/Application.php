@@ -2,16 +2,19 @@
 require_once('db/DB.php');
 require_once('user/User.php');
 require_once('chat/Chat.php');
+require_once('lobby/Lobby.php');
 
 class Application
 {
     private $user;
     private $chat;
-    function __construct()
-    {
+    private $lobby;
+
+    function __construct() {
         $db = new DB();
         $this->user = new User($db);
         $this->chat = new Chat($db);
+        $this->lobby = new Lobby($db);
     }
 
     public function login($params)
@@ -49,8 +52,7 @@ class Application
     }
 
     // Обновление имени
-    public function updateUserName($params)
-    {
+    public function updateUserName($params) {
         if ($params['token'] && $params['newName']) {
             $user = $this->user->getUser($params['token']);
             if ($user) {
@@ -83,5 +85,38 @@ class Application
             return ['error' => 705];
         }
         return ['error' => 242];
+    }
+
+    // menu
+    public function getUserStat($params) {
+        $token = $params['token'];
+        return true;
+    }
+
+    public function getUserBalance($params) {
+        $token = $params['token'];
+        return true;
+    }
+
+    // lobby
+    public function quickStart($params) {
+        $token = $params['token'];
+        return true;
+    }
+
+    public function createPrivateRoom($params) {
+        $token = $params['token'];
+        return true;
+    }
+
+    public function joinPrivateRoom($params) {
+        $token = $params['token'];
+        $code = $params['code'];
+        return true;
+    }
+    
+    public function getRatingTable($params) {
+        $token = $params['token'];
+        return true;
     }
 }
